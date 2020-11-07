@@ -1,0 +1,171 @@
+
+%------------------------------------------------------------------------------
+%       package includes
+%------------------------------------------------------------------------------
+    % font encoding is set up for pdflatex, for other environments see
+    % http://tex.stackexchange.com/questions/44694/fontenc-vs-inputenc
+    \usepackage[T1]{fontenc}  % 8-bit fonts, improves handling of hyphenations
+    \usepackage[utf8x]{inputenc}
+    % provides `old' commands for table of contents. Eases the ability to switch
+    % between book and scrbook
+    \usepackage{scrhack}
+
+
+    % ------------------- layout, default -------------------
+    % adjust the style of float's captions, separated from text to improve readabilty
+    \usepackage[labelfont=bf, labelsep=colon, format=hang, textfont=singlespacing]{caption}
+    % With format = hang your caption will look like this:
+    % Figure 1: Lorem ipsum dolor sit amet,
+    %           consectetuer adipiscing elit.
+    %           Ut purus elit, vestibulum
+    % If you instead want
+    % Figure 1: Lorem ipsum dolor sit amet,
+    % consectetuer adipiscing elit. Ut purus
+    % elit, vestibulum
+    % change to format=plain
+    \usepackage{chngcntr}  % continuous numbering of figures/tables over chapters
+    \counterwithout{equation}{chapter}
+    \counterwithout{figure}{chapter}
+    \counterwithout{table}{chapter}
+
+    % Uncomment the following line if you switch from scrbook to book
+    % and comment the setkomafont line
+    %\usepackage{titlesec}  % remove "Chapter" from the chapter title
+    %\titleformat{\chapter}[hang]{\bfseries\huge}{\thechapter}{2pc}{\huge}
+    \setkomafont{chapter}{\normalfont\bfseries\huge}
+
+    \usepackage{setspace}  % Line spacing
+    \onehalfspacing
+    % \doublespacing  % uncomment for double spacing, e.g. for annotations in correction
+
+    % ------------------- functional, default-------------------
+    \usepackage[dvipsnames]{xcolor}  % more colors
+    \usepackage{array}  % custom format per column in table - needed on the title page
+    \usepackage{graphicx}  % include graphics
+    \usepackage{subfig}  % divide figure, e.g. 1(a), 1(b)...
+    \usepackage{amsmath}  % |
+    \usepackage{amsthm}   % | math, bmatrix etc
+    \usepackage{amsfonts} % |
+    \usepackage{calc}  % calculate within LaTeX
+    \usepackage[unicode=true,bookmarks=true,bookmarksnumbered=true,
+                bookmarksopen=true,bookmarksopenlevel=1,breaklinks=false,
+                pdfborder={0 0 0},backref=false,colorlinks=false]{hyperref}
+    \usepackage{etoolbox} % if-else commands
+
+
+    %==========================================
+    % You might not need the following packages, I only included them as they
+    % are needed for the example floats
+    % ------------------- functional, custom -------------------
+    \usepackage{algorithm,algpseudocode}
+    \usepackage{bm}  % bold greek variables (boldmath)
+    \usepackage{tikz}
+    \usetikzlibrary{positioning}  % use: above left of, etc
+    
+    % Required for the ToDo list.
+    \usepackage{ifthen}
+
+    % Improves general appearance of the text
+    \usepackage[protrusion=true,expansion=true, kerning]{microtype}
+    \usepackage{enumitem}
+    % Nicer font for pdf rendering.
+    %\usepackage{lmodern}
+    
+    % For nicer looking tables.
+    \usepackage{booktabs}
+
+    % You don't need this, just for demonstration of a longer caption.
+    \usepackage{lipsum}
+
+%------------------------------------------------------------------------------
+%       (re)new commands / settings
+%------------------------------------------------------------------------------
+    % ----------------- referencing ----------------
+    \newcommand{\secref}[1]{section~\ref{#1}}
+    \newcommand{\chapref}[1]{chapter~\ref{#1}}
+    \renewcommand{\eqref}[1]{equation~(\ref{#1})}
+    \newcommand{\figref}[1]{figure~\ref{#1}}
+    \newcommand{\tabref}[1]{table~\ref{#1}}
+
+    % ------------------- colors -------------------
+    \definecolor{darkgreen}{rgb}{0.0, 0.5, 0.0}
+    % Colors of the Albert Ludwigs University as in
+    % https://www.zuv.uni-freiburg.de/service/cd/cd-manual/farbwelt
+    \definecolor{UniBlue}{RGB}{0, 74, 153}
+    \definecolor{UniRed}{RGB}{193, 0, 42}
+    \definecolor{UniGrey}{RGB}{154, 155, 156}
+
+
+    % ------------------- layout -------------------
+    % prevents floating objects from being placed ahead of their section
+    \let\mySection\section\renewcommand{\section}{\suppressfloats[t]\mySection}
+    \let\mySubSection\subsection\renewcommand{\subsection}{\suppressfloats[t]\mySubSection}
+
+
+
+    % ------------------- math formatting commands -------------------
+    % define vectors to be bold instead of using an arrow
+    \renewcommand{\vec}[1]{\mathbf{#1}}
+    \newcommand{\mat}[1]{\mathbf{#1}}
+    % tag equation with name
+    \newcommand{\eqname}[1]{\tag*{#1}}
+
+
+    % ------------------- pdf settings -------------------
+    % ADAPT THIS
+    \hypersetup{pdftitle={\thetitle},
+                pdfauthor={\theauthor},
+                pdfsubject={},
+                pdfkeywords={},
+                pdfpagelayout=OneColumn, pdfnewwindow=true, pdfstartview=XYZ, plainpages=false}
+
+
+    %==========================================
+    % You might not need the following commands, I only included them as they
+    % are needed for the example floats
+
+    % ------------------- Tikz styles -------------------
+    \tikzset{>=latex}  % arrow style
+
+
+    % ------------------- algorithm ---------------------
+    % Command to align comments in algorithm
+    \newcommand{\alignedComment}[1]{\Comment{\parbox[t]{.35\linewidth}{#1}}}
+    % define a foreach command in algorithms
+    \algnewcommand\algorithmicforeach{\textbf{foreach}}
+    \algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+
+    % line spacing should be 1.5
+    \renewcommand{\baselinestretch}{1.5}
+
+    % set distance between items in a list, for more details see the
+    % enumitem package: https://www.ctan.org/pkg/enumitem
+    \setlist{itemsep=.5em}
+    
+    % use ra in your tables to increase the space between rows
+    % 1.3 should be fine
+    \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+	% ToDo counters
+	\usepackage{ifthen} %für whiledo-Schleife
+	\newcounter{todos}
+	\setcounter{todos}{0}
+	\newcounter{extends}
+	\setcounter{extends}{0}
+	\newcounter{drafts}
+	\setcounter{drafts}{0}
+
+	% ------------------- marker commands -------------------
+    % ToDo command
+    \newcommand{\todo}[1]{\textbf{\textcolor{red}{(TODO: #1)}}\refstepcounter{todos}\label{todo \thetodos}}
+	\newcommand{\extend}[1]{\textbf{\textcolor{darkgreen}{(EXTEND: #1)}}\refstepcounter{extends}\label{extend \theextends}}
+	% Lighter color to note down quick drafts
+	\newcommand{\draft}[1]{\textbf{\textcolor{NavyBlue}{(DRAFT: #1)}}\refstepcounter{drafts}\label{draft \thedrafts}}
+	
+	% microtype with lmodern, see https://tex.stackexchange.com/questions/75305/microtype-warning-with-lmodern-package-and-koma-script
+    %\DeclareMicrotypeAlias{lmss}{cmr}
+    
+    % Variable definitions
+    \newenvironment{conditions}
+    {\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
+    {\end{tabular}\par\vspace{\belowdisplayskip}}

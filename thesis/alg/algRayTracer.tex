@@ -1,0 +1,41 @@
+\begin{algorithm}[p]
+    \caption{Ray Tracing Algorithm Overview}
+    \label{alg:ray}
+    \begin{algorithmic}
+        \ForEach{Source $S_i \in S$}
+            \ForEach{Receiver $R_j \in R$}
+            \State $G_{ij} \gets \emptyset$
+                \ForEach{Order $l \in \{0...L\}$}
+                    \State $P \gets$ AddPaths($S_i$, $R_j$, $L$)
+                    \If{$P \neq \emptyset$}
+                    \State $G_{ij} = G_{ij} \cup P$
+                    \EndIf
+                \EndFor
+            \EndFor
+        \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[p]
+    \caption{AddPaths($S_i$, $R_j$, $L$): Path Creation}
+    \label{alg:path}
+    \begin{algorithmic}
+        
+
+        \State Check if reflection exists
+        \State $i \gets s \cap m$
+        \If{}
+
+        \EndIf
+
+        \State Does collision exist with other objects?
+        \ForEach{Mirror Tuple $M$ of length $L$}
+        \State Node $s \gets S_i$
+        \State Node $r \gets R_j$
+
+
+        \EndFor
+        \State Segment $s \gets \text{Segment}(a,b)$
+        \Return{}
+    \end{algorithmic}
+\end{algorithm}

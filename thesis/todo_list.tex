@@ -1,0 +1,29 @@
+% place it somewhere in the document
+\chapter*{ToDo Counters}
+\newcounter{ct}%
+To Dos: \arabic{todos}; \hspace{1em}%
+\setcounter{ct}{0}%
+\whiledo {\value{ct} < \value{todos}}%
+{%
+	\stepcounter {ct}%
+    \ref{todo \thect}%
+	\ifnum\value{ct} = \value{todos}{}\else{, }\fi
+}
+
+Parts to extend: \arabic{extends}; \hspace{1em}%
+\setcounter{ct}{0}%
+\whiledo {\value{ct} < \value{extends}}%
+{%
+	\stepcounter {ct}%
+	\ref{extend \thect}%
+	\ifnum\value{ct} = \value{extends}{}\else{, }\fi
+}
+
+Draft parts: \arabic{drafts}; \hspace{1em}%
+\setcounter{ct}{0}%
+\whiledo {\value{ct} < \value{drafts}}%
+{%
+	\stepcounter {ct}%
+	\ref{draft \thect}%
+	\ifnum\value{ct} = \value{drafts}{}\else{, }\fi
+}

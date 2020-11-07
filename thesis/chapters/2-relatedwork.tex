@@ -1,0 +1,24 @@
+\chapter{Related Work}\label{chap:relatedwork}
+
+\textbf{Articles}\newline
+\cite{rober2007ray} \textit{Niklas Röber et al. "Ray acoustics using computer graphics technology"} \newline
+Most of the ideas for this thesis are based on the geometric acoustic approach of this paper.
+For higher frequencies the geometric acoustic approach seems very promising and can be efficiently realized with GPU acceleration.
+The room impulse response (RIR) method is especially beneficial for generating test data for TDOA or AOA systems.
+
+\cite{rindel1995computer} \textit{Jens Holger Rindel, "Computer simulation techniques for acoustical design of rooms"} \newline
+This paper has been found on the website of ODEON and displays a ray tracing, an image source and a hybrid method for room acoustic simulations.
+The presented Image Source Method has been the main driver and approach for ARTS.
+
+\textbf{Implementations}\newline
+\cite{odeon} \textit{Odeon A/S, ODEON} \newline
+ODEON is a commercial software for simulating and measuring indoor room acoustics of buildings.
+Some of the above mentioned articles and their methods have been used to build ODEON.
+It features a rich database of materials with absorption coefficients.
+
+\cite{wayverb} \textit{Reuben Thomas, Wayverb} \newline
+Wayverb is an open source software for room acoustics, similar to ODEON.
+Some of the ideas have been used in this thesis as well, especially the geometric image-source method.
+It is currently only supported on OSX and needs porting for other platforms.
+Unfortunately it has been discovered pretty late in the project process.
+It would have been a very good starting point as it seems to be very promising and worth looking into for indoor localization and mapping problems.

@@ -1,0 +1,25 @@
+\chapter{Conclusion and Future Work}\label{chap:conclusion}
+The Acoustic Ray Tracing approach seems very promising for indoor localization and mapping applications.
+With ARTS a very useful and scalable tool for indoor environments has been created.
+The modular architecture provides flexibility and lots of room for exploration.
+The tool can be used on any platform by containerizing it with tools like Docker\cite{docker}.
+This should be considered especially for future releases including GPU acceleration.
+The use of industry standard 3D model formats allows any user to rapidly design and test arbitrary environments with tools of their choice.
+Once creating these 3D models can be automated or accelerated, the need for a tool like ARTS for indoor localization or mapping applications becomes indispensable.
+
+There are certain functionalities, improvements and features missing which might be necessary and great to add:
+
+The run-time of the Ray Tracing Module is still slow and it has a lot of potential to be optimized.
+The same can be said for the Path Sampler.
+Since these parts of the algorithm can be parallelized, we are almost guaranteed to see an improvement in performance by using a GPU.
+This would most likely require moving away from CGAL\cite{cgal} as it currently doesn't support accessing CGAL objects from multiple threads.
+The best solution would probably be to use data structures and API calls from libraries like OpenCL or Vulkan \cite{vulkan}, which support multiple GPUs, even on embedded platforms.
+The docker functionality for such solutions is probably limited or currently not possible.
+CUDA\cite{cuda} seems to work for Linux based systems but limited to NVIDIA GPUs.
+
+Another area worth exploring is possibly leveraging the compute power of NVIDIA's new RTX GPUs\cite{nvidia}.
+If they can do light ray tracing in real-time it will probably work for acoustics as well.
+
+The proposed model does not include effects like scattering, diffraction and the influence of signal frequency.
+Continued work that takes these effects into consideration would likely yield a more realistic model, especially in regards to noise generation.
+Given the modular architecture, it should be possible to gradually add these effects to the model.

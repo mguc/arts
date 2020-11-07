@@ -1,0 +1,80 @@
+% documentclass options:
+\documentclass[11pt,
+  a4paper,
+  parskip=half, % This is some extra vertical space between paragraphs, the suggestion is 2cm which is really ugly, so we use what koma script gives us
+  % you can also set it to full for even more space. But there is a bad tex style decision: parskip also changes the spacing between listitems such as
+  % enumerate and itemize. For this purpose we include the enumitem package and set itemsep=.5em, of course you can change this
+  BCOR=10mm, % BCOR is binding correction
+  english,
+  % if you'd rather have a one sided thesis, add `oneside' to the documentclass
+  % oneside,
+  % ngerman is needed for hyphenation if the thesis contains parts written in German, switch order with english if you write mainly in English.
+  % Remember to change order in the babel package (below) as well.
+  % Last language is the preferred one.
+  english]{scrbook}
+\usepackage[english]{babel} % If you write mainly in English change order to ngerman, english. Also change that in the documentclass options above.
+% Include of titling must happen before \title etc.
+% that's why it's not in setup.tex
+\usepackage{titling}
+\title{Ultrasonic Ray Tracing Simulation for Indoor Localization and Mapping Applications}
+\author{Marko Gucanin}
+
+% Change to your first examiner
+% The ~ enables non sentence spacing after a period
+\newcommand{\firstexaminer}{Prof.~Dr.~Christian Schindelhauer}
+% Change to your second examiner, some undergraduate studies don't have a second examiner
+% in this case just comment out the following line
+\newcommand{\secondexaminer}{Prof.~Dr.~Leonhard Reindl}
+% Change to your advisers
+% \newcommand{\advisers}{Prof.~Dr.~Christian Schindelhauer}
+
+% include all packages and define commands in setup.tex
+\input{setup}
+
+\begin{document}
+    \pagestyle{empty} % no header and no page number
+    % disable hyper links to remove warning "destination with same identifier"
+    % this means within this section nothing can be referenced with a hyperlink
+    \hypersetup{pageanchor=false}
+
+    % enable/disable, depending on your chosen language
+    \input{chapters/0_0-titlepage_en}
+
+    \pagestyle{plain} % remove chapter name from top, page number at the bottom
+    % use \pagestyle{headings} for having the chapter on top of the pages
+    % if you wang a more fancy header use \usepackage[automark,headsepline]{scrlayer-scrpage}
+    % and read about it in the KOMA script documentation, https://www.ctan.org/pkg/koma-script
+    \frontmatter  % roman page numbers
+    \input{chapters/0_1-declaration}
+    \input{chapters/0_2-abstract}
+    \tableofcontents
+    \listoffigures
+    \listoftables
+    % \listofalgorithms
+    \hypersetup{pageanchor=true}  % re-enable hyperlinking
+
+    \mainmatter  % Arabic page numbers
+    \input{chapters/1-introduction}
+    \input{chapters/2-relatedwork}
+    \input{chapters/3-background}
+    \input{chapters/4-approach}
+    \input{chapters/5-experiments}
+    \input{chapters/6-conclusions}
+    \input{chapters/7-acknowledgments}
+    
+    % If you want a list of your ToDos at the end of the document
+    % don't forget to remove before submission!
+    %\input{todo_list}
+
+    \bibliographystyle{ieeetr}
+    \bibliography{bib/general, bib/localization, bib/mapping, bib/ray_tracing, bib/web}
+    % bibliography is not in the table of contents per default, add it manually
+    % enable the \renewcommand for german header
+    % \renewcommand{\bibname}{Literaturverzeichnis}
+    \addcontentsline{toc}{chapter}{Bibliography}
+    \newpage
+    \thispagestyle{empty}
+    \mbox{}
+
+
+\end{document}
