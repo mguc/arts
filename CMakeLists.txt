@@ -55,7 +55,8 @@ add_executable( arts_cli
 add_executable( arts_test
   test/Main.cpp
   test/TestTube.cpp
-  test/TestLOSEstimator.cpp 
+  test/TestLOSEstimator.cpp
+  test/TestWallEstimator.cpp
 )
 
 add_compile_options(
