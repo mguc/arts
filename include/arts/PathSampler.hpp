@@ -7,7 +7,7 @@
 
 namespace arts
 {
-    void SamplePaths(std::vector<Path> &paths, double time, AudioFile<double> &samples);
+    void SamplePaths(std::vector<Path> &paths, double time, AudioFile<double> &audioFile);
 } // namespace arts
 
 #endif /* __ARTS_PATH_SAMPLER__ */

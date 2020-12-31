@@ -4,7 +4,7 @@
 
 namespace arts
 {
-    void SamplePaths(std::vector<Path> &paths, double time, AudioFile<double> &samples)
+    void SamplePaths(std::vector<Path> &paths, double time, AudioFile<double> &audioFile)
     {
         Receiver &r = paths[0].GetReceiver();
         Source &s = paths[0].GetSource();
@@ -16,8 +16,8 @@ namespace arts
         double alpha = 0.5;
 
         // adjust audio file
-        samples.setSampleRate(r.GetSamplingFrequency());
-        samples.setAudioBufferSize(1, last_sample);
+        audioFile.setSampleRate(r.GetSamplingFrequency());
+        audioFile.setAudioBufferSize(1, last_sample);
 
         // Fast forwarding
         uint32_t first_samples[paths.size()] = {0};
@@ -33,7 +33,7 @@ namespace arts
         }
         for (uint32_t i = 0; i < first_samples[shortest_path_index]; ++i)
         {
-            samples.samples[0][i] = 0;
+            audioFile.samples[0][i] = 0;
         }
 
         double sample = 0;
@@ -48,7 +48,7 @@ namespace arts
                 }
                 sample += s.GetSourceSignal().GetSample((current_sample - first_samples[i]) * sampling_time) / (1 + paths[i].Length());
             }
-            samples.samples[0][current_sample] = sample;
+            audioFile.samples[0][current_sample] = sample;
         }
     }
 } // namespace arts

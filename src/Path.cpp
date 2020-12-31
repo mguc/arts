@@ -22,6 +22,7 @@ namespace arts
             v = Vector(tx, *it);
             mLength += sqrt(v.squared_length());
             mVectors.push_back(v);
+            tx = *it;
         }
         v = Vector(tx, mReceiver.GetPosition());
         mLength += sqrt(v.squared_length());
@@ -62,7 +63,7 @@ namespace arts
         {
             std::cout << "(" << *it << ")->";
         }
-        std::cout << "(" << mReceiver.GetPosition() << ")" << std::endl;
+        std::cout << "(" << mReceiver.GetPosition() << "): " << mLength << std::endl;
     }
 
     uint32_t Path::NumberOfNodes()
